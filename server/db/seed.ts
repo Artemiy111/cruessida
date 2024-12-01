@@ -2,27 +2,25 @@ import { db } from '~~/server/db'
 import { type UserDbCreate, users, products, type ProductDbCreate } from '~~/server/db/schema'
 import { hash } from 'argon2'
 
-
-
 const seedProducts: ProductDbCreate[] = [
-  // {
-  //   section: 'woman',
-  //   title: 'Куртка кожаная',
-  //   price: 18750,
-  //   image: 'https://optim.tildacdn.com/tild6631-3038-4639-a366-636130396164/-/cover/520x920/center/center/-/format/webp/9K1A9955.jpg'
-  // },
-  // {
-  //   section: 'woman',
-  //   title: 'Куртка кожаная с мехом',
-  //   price: 18000,
-  //   image: 'https://optim.tildacdn.com/tild3336-6536-4262-b563-626432663561/-/cover/520x920/center/center/-/format/webp/IMG_3391.jpg'
-  // },
-  // {
-  //   section: 'woman',
-  //   title: 'Плащ кожанный',
-  //   price: 20000,
-  //   image: 'https://optim.tildacdn.com/tild6336-3532-4337-b032-643239363436/-/resize/600x800/-/format/webp/9K1A2765-1.jpg'
-  // },
+  {
+    section: 'woman',
+    title: 'Куртка кожаная',
+    price: 18750,
+    image: 'https://optim.tildacdn.com/tild6631-3038-4639-a366-636130396164/-/cover/520x920/center/center/-/format/webp/9K1A9955.jpg'
+  },
+  {
+    section: 'woman',
+    title: 'Куртка кожаная с мехом',
+    price: 18000,
+    image: 'https://optim.tildacdn.com/tild3336-6536-4262-b563-626432663561/-/cover/520x920/center/center/-/format/webp/IMG_3391.jpg'
+  },
+  {
+    section: 'woman',
+    title: 'Плащ кожанный',
+    price: 20000,
+    image: 'https://optim.tildacdn.com/tild6336-3532-4337-b032-643239363436/-/resize/600x800/-/format/webp/9K1A2765-1.jpg'
+  },
   {
     section: 'woman',
     title: 'Куртка из текстиля, двухсторонняя',
@@ -61,8 +59,6 @@ const seedProducts: ProductDbCreate[] = [
   }
 ]
 
-
-
 const seed = async () => {
   const seedUsers: UserDbCreate[] = [
     {
@@ -73,10 +69,8 @@ const seed = async () => {
 
   console.log('seeding...')
 
-  // await db.delete(products)
   await db.insert(products).values(seedProducts)
-  // await db.delete(users)
-  // await db.insert(users).values(seedUsers)
+  await db.insert(users).values(seedUsers)
 
   console.log('seeded!')
 }
