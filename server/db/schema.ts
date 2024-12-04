@@ -28,12 +28,21 @@ export const products = sqliteTable('products', {
   price: int().notNull(),
 })
 
+
 export type ProductDb = typeof products.$inferSelect
 export type ProductDbCreate = typeof products.$inferInsert
 
 export const productsRelations = relations(products, ({ many }) => ({
   cartItems: many(cartItems),
 }))
+
+export const banners = sqliteTable('banners', {
+  id: int().primaryKey({ autoIncrement: true }),
+  image: text().notNull(),
+  productId: int().notNull().references(() => products.id),
+})
+
+export type BannerDbCreate = typeof banners.$inferInsert
 
 export const feedbacks = sqliteTable('feedbacks', {
   id: int().primaryKey({ autoIncrement: true }),

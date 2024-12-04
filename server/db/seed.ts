@@ -1,5 +1,5 @@
 import { db } from '~~/server/db'
-import { type UserDbCreate, users, products, type ProductDbCreate } from '~~/server/db/schema'
+import { type UserDbCreate, users, products, type ProductDbCreate, type BannerDbCreate, banners } from '~~/server/db/schema'
 import { hash } from 'argon2'
 
 const seedProducts: ProductDbCreate[] = [
@@ -59,6 +59,21 @@ const seedProducts: ProductDbCreate[] = [
   }
 ]
 
+const seedBanners: BannerDbCreate[] = [
+  {
+    image: '/home/banner-1.jpg',
+    productId: 1
+  },
+  {
+    image: '/home/banner-2.jpg',
+    productId: 7
+  },
+  {
+    image: '/home/banner-3.jpg',
+    productId: 2
+  }
+]
+
 const seed = async () => {
   const seedUsers: UserDbCreate[] = [
     {
@@ -73,7 +88,7 @@ const seed = async () => {
 
   await db.insert(products).values(seedProducts)
   await db.insert(users).values(seedUsers)
-
+  await db.insert(banners).values(seedBanners)
   console.log('seeded!')
 }
 

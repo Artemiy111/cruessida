@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import Autoplay from 'embla-carousel-autoplay'
-const banners = [
-  {
-    img: '/home/banner-1.jpg',
-    url: '/catalog',
-  },
-  {
-    img: '/home/banner-2.jpg',
-    url: '/catalog',
-  },
-]
+
+const { data: banners } = await useFetch('/api/banners/get-banners')
 </script>
 
 <template>
@@ -24,9 +16,9 @@ const banners = [
       class="relative w-full"
     >
       <CarouselContent class="h-[480px]">
-        <CarouselItem v-for="banner in banners" :key="banner.img">
-          <NuxtLink :to="banner.url">
-            <img class="w-full h-full object-cover" :src="banner.img" alt="Banner" />
+        <CarouselItem v-for="banner in banners" :key="banner.id">
+          <NuxtLink :to="`/catalog/${banner.productId}`">
+            <img class="w-full h-full object-cover" :src="banner.image" alt="Banner" />
           </NuxtLink>
         </CarouselItem>
       </CarouselContent>
