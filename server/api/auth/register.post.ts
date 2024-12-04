@@ -12,7 +12,7 @@ export default defineEventHandler(async event => {
 
   const passwordHash = await hash(body.password)
 
-  const user = (await db.insert(users).values({ email: body.email, passwordHash }).returning())[0]
+  const user = (await db.insert(users).values({ email: body.email, passwordHash, phone: body.phone, name: body.name }).returning())[0]
 
   setCookie(event, 'user', JSON.stringify(existingUser), { secure: true, expires: new Date(Date.now() + 1000 * 60 * 60 * 24) })
   return { error: false as const, message: 'Вы успешно вошли', user }

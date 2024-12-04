@@ -25,6 +25,8 @@ export const getMinMaxNumberSchema = (min: number, max: number) => requiredNumbe
 export const passwordSchema = getMinMaxStringSchema(6, 20)
 
 export const registerSchema = z.object({
+  name: getMinMaxStringSchema(3, 50),
+  phone: requiredStringSchema.regex(/^(?:\+7|7|8)?\d{10}$/, validationErrors.invalidPhoneNumber),
   email: requiredStringSchema.email(validationErrors.email),
   password: passwordSchema,
   confirmPassword: passwordSchema,

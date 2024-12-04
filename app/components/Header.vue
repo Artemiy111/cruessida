@@ -29,7 +29,7 @@ const { user, logout } = useUser()
 
           <li>
             <Popover>
-              <PopoverTrigger> {{ user!.email }} </PopoverTrigger>
+              <PopoverTrigger> {{ user!.name }} </PopoverTrigger>
               <PopoverContent class="w-fit">
                 <Button @click="logout" variant="destructive">Выйти</Button>
               </PopoverContent>

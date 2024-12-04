@@ -62,6 +62,8 @@ const seedProducts: ProductDbCreate[] = [
 const seed = async () => {
   const seedUsers: UserDbCreate[] = [
     {
+      name: 'Юзер',
+      phone: '+79999999999',
       email: 'user@google.com',
       passwordHash: await hash('00000000'),
     },

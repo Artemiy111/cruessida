@@ -57,9 +57,10 @@ const addProductToCart = async (productId: number) => {
       <div v-for="(section, key) in filteredProducts" :key="key" class="">
         <h2 class="text-xl font-bold mb-8">{{ sectionTitle[key] }}</h2>
         <div class="grid grid-cols-4 gap-8">
-          <div v-for="product in section" :key="product.id">
+          <NuxtLink :to="`catalog/${product.id}`" v-for="product in section" :key="product.id">
             <img :src="product.image" class="w-full h-[500px] object-cover" />
             <p class="mt-2 text-lg font-bold">{{ product.price }} ₽</p>
+
             <h3>{{ product.title }}</h3>
             <Button
               v-if="!product?.cartItems?.[0]"
@@ -85,7 +86,7 @@ const addProductToCart = async (productId: number) => {
                 <PlusIcon />
               </Button>
             </div>
-          </div>
+          </NuxtLink>
         </div>
       </div>
     </section>

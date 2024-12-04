@@ -11,8 +11,14 @@ const { register } = useUser()
       @submit="register"
       :schema="registerSchema"
       :field-config="{
+        name: {
+          label: 'Имя',
+        },
         email: {
           label: 'Email',
+        },
+        phone: {
+          label: 'Телефон',
         },
         password: {
           label: 'Пароль',
